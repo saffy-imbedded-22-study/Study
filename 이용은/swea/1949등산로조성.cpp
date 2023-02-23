@@ -11,14 +11,10 @@ struct Node {
 int N, K;
 int MAP[10][10];
 vector<Node>v;
-
 int maxPath;
 int ydir[] = { -1,1,0,0 };
 int xdir[] = { 0,0,-1,1 };
 int visited[10][10];
-void reset() {
-    Node working = { 0,0,0 };
-}
 
 int input() {
     int Max = 0;
@@ -75,8 +71,6 @@ void DFS(Node now, int result) {
 
     }
 }
-
-
 
 int main() {
     int T;
