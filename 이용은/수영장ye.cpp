@@ -2,42 +2,38 @@
 #include <algorithm>
 using namespace std;
 
-int Schedule[12];//idx : month -1 , °ª: ÀÌ¿ë°èÈ¹
-int Charge[4]; // ¿ä±İ
-int minCost;// ÃÖ¼Ú°ª °»½Å¿ë
-int Sum; //¿¬»ê°á°ú ÀúÀå¿ë
+int Schedule[12];//idx : month -1 , ê°’: ì´ìš©ê³„íš
+int Charge[4]; // ìš”ê¸ˆ
+int minCost;// ìµœì†Ÿê°’ ê°±ì‹ ìš©
+int Sum; //ì—°ì‚°ê²°ê³¼ ì €ì¥ìš©
 
-//visited ÇÊ¿ä¾øÀ½
+//visited í•„ìš”ì—†ìŒ
 
 void DFS(int now) {
-    //±âÀú
+    //ì´ì „ ìµœì†Ÿê°’ ì´ìƒê²½ìš° skip
+ if (Sum >= minCost) return;
+    //ê¸°ì €
     if (now >= 12) {
-        //12¿ù ÃÊ°úÇÏ¸é ÃÖ¼Ú°ª °»½Å
+        //12ì›” ì´ˆê³¼í•˜ë©´ ìµœì†Ÿê°’ ê°±ì‹ 
         minCost = min(minCost, Sum);
         return;
     }
 
     for (int x = 0; x < 3; x++) {
-        //°¡ÁöÄ¡±â
-
-        //ÀÌÀü ÃÖ¼Ú°ª ÀÌ»ó°æ¿ì skip
-        if (Sum >= minCost) continue;
-
-
-        //Ã³¸®
-        //ÀÏÀÏ ÀÌ¿ë¿ø
+        //ì²˜ë¦¬
+        //ì¼ì¼ ì´ìš©ì›
         if (x == 0) {
             Sum += Schedule[now] * Charge[x];
             DFS(now + 1);
             Sum -= Schedule[now] * Charge[x];
         }
-        //¿ù°£
+        //ì›”ê°„
         if (x == 1) {
             Sum += Charge[x];
             DFS(now + 1);
             Sum -= Charge[x];
         }
-        //3´Ş
+        //3ë‹¬
         if (x == 2) {
             Sum += Charge[x];
             DFS(now + 3);
@@ -65,11 +61,11 @@ int main() {
         for (int x = 0; x < 12; x++)
             cin >> Schedule[x];
 
-        minCost = Charge[3]; //¿¬°£ÀÌ¿ë±Ç °¡°İÀ¸·Î ÃÊ±âÈ­
+        minCost = Charge[3]; //ì—°ê°„ì´ìš©ê¶Œ ê°€ê²©ìœ¼ë¡œ ì´ˆê¸°í™”
 
         DFS(0);
 
-        //DFS·Î °»½ÅµÈ ÃÖ¼Ú°ª Ãâ·Â
+        //DFSë¡œ ê°±ì‹ ëœ ìµœì†Ÿê°’ ì¶œë ¥
         cout << "#" << tc << " " << minCost << endl;
 
     }
