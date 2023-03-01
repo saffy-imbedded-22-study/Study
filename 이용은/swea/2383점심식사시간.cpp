@@ -8,7 +8,7 @@ struct MAN {
 };
 struct Stair {
 	int y, x;
-	int time;//³»·Á°¡´Âµ¥ °É¸®´Â ½Ã°£
+	int time;//ë‚´ë ¤ê°€ëŠ”ë° ê±¸ë¦¬ëŠ” ì‹œê°„
 };
 int MinTime =21e8;
 int N;
@@ -39,7 +39,7 @@ void input() {
 			else if (tmp != 0) stair.push_back({ y,x,tmp });
 		}
 	}
-	manCnt = v.size();//»ç¶÷¼ö
+	manCnt = v.size();//ì‚¬ëŒìˆ˜
 }
 
 
@@ -53,13 +53,13 @@ int getDist(int y1, int x1, int y2, int x2) {
 	return ny + nx;
 }
 
-//°Å¸® ±¸ÇÏ±â
+//ê±°ë¦¬ êµ¬í•˜ê¸°
 void findDist() {
 	
 	for (int i = 0; i < 2; i++) {
 		Stair stairnow = stair[i];
 		for (int j = 0; j < manCnt; j++) {
-			//j¹øÂ° »ç¶÷ÀÇ i¹ø °è´Ü±îÁö °Å¸® ±¸ÇÏ±â
+			//jë²ˆì§¸ ì‚¬ëŒì˜ ië²ˆ ê³„ë‹¨ê¹Œì§€ ê±°ë¦¬ êµ¬í•˜ê¸°
 			MAN now = v[j];
 			if (i == 0) {
 				v[j].dist0 = getDist(now.y, now.x, stairnow.y, stairnow.x);
@@ -71,28 +71,28 @@ void findDist() {
 		}
 	}
 }
-//type ==0 >> path0
+
 int findMinTime( vector<int>stair0, vector<int>stair1) {
 	int size0 = stair0.size();
 	int size1 = stair1.size();
 	int tmp0=0, tmp1=0;
-	//»¡¸® µµÂøÇÑ ¼ø¼­´ë·Î Á¤·Ä
+	//ë¹¨ë¦¬ ë„ì°©í•œ ìˆœì„œëŒ€ë¡œ ì •ë ¬
 	sort(stair0.begin(), stair0.end());
 	sort(stair1.begin(), stair1.end());
 
-	//size0 ¸¸Å­ÀÇ »ç¶÷ÀÌ stair0¾Õ¿¡ ´ë±âÁß
+	//size0 ë§Œí¼ì˜ ì‚¬ëŒì´ stair0ì•ì— ëŒ€ê¸°ì¤‘
 	for (int i = 0; i < size0; i++) {
-		if (i < 3) continue;//3¹øÂ° ÀÌÇÏ·Î µµÂøÇÑ »ç¶÷Àº ´ë±â½Ã°£ =µµÂø½Ã°£
-		if (i >= 3) {//3¸íÀÌ»ó ´ë±âÁßÀÌ¸é
-			//3¹øÂ° ¾Õ¿¡ ³ª°¡´Â »ç¶÷ÀÇ ½Ã°£°ú  ºñ±³
-			//´ë±â½Ã°£ > µµÂø½Ã°£ÀÌ¸é, ´ë±â½Ã°£À¸·Î ¹Ù²Ù¾îÁÜ
+		if (i < 3) continue;//3ë²ˆì§¸ ì´í•˜ë¡œ ë„ì°©í•œ ì‚¬ëŒì€ ëŒ€ê¸°ì‹œê°„ =ë„ì°©ì‹œê°„
+		if (i >= 3) {//3ëª…ì´ìƒ ëŒ€ê¸°ì¤‘ì´ë©´
+			//3ë²ˆì§¸ ì•ì— ë‚˜ê°€ëŠ” ì‚¬ëŒì˜ ì‹œê°„ê³¼  ë¹„êµ
+			//ëŒ€ê¸°ì‹œê°„ > ë„ì°©ì‹œê°„ì´ë©´, ëŒ€ê¸°ì‹œê°„ìœ¼ë¡œ ë°”ê¾¸ì–´ì¤Œ
 			if (stair0[i - 3] + stair[0].time > stair0[i]) {
 				stair0[i] = stair0[i - 3] + stair[0].time;
 			}
 		}
 	}
 
-	//À§¿Í µ¿ÀÏ
+	//ìœ„ì™€ ë™ì¼
 	for (int i = 0; i < size1; i++) {
 		if (i < 3) continue;
 		if (i >= 3) {
@@ -101,7 +101,7 @@ int findMinTime( vector<int>stair0, vector<int>stair1) {
 			}
 		}
 	}
-	//¸¶Áö¸·À¸·Î °è´Ü ³»·Á°¡´Â »ç¶÷ÀÌ °É¸°½Ã°£ ±¸ÇÏ±â
+	//ë§ˆì§€ë§‰ìœ¼ë¡œ ê³„ë‹¨ ë‚´ë ¤ê°€ëŠ” ì‚¬ëŒì´ ê±¸ë¦°ì‹œê°„ êµ¬í•˜ê¸°
 	if (size0 != 0)
 		tmp0 = stair0[size0 - 1] + stair[0].time;
 	else tmp0 = 0;
@@ -110,14 +110,14 @@ int findMinTime( vector<int>stair0, vector<int>stair1) {
 		tmp1 = stair1[size1 - 1] + stair[1].time;
 	else tmp1 = 0;
 	
-	//µÑÁß¿¡ ¿À·¡°É¸° ½Ã°£ return
+	//ë‘˜ì¤‘ì— ì˜¤ë˜ê±¸ë¦° ì‹œê°„ return
 	return max(tmp1, tmp0);
 }
 
 
 void DFS(int now) {
-	if (now == manCnt) { //¸ğµç »ç¶÷ÀÌ ³»·Á°¥ °è´ÜÀ» ¼±ÅÃÇßÀ¸¸é
-		//³»·Á°¡´Âµ¥ °É¸° ½Ã°£ ÃÖ¼Ú°ª °»½Å
+	if (now == manCnt) { //ëª¨ë“  ì‚¬ëŒì´ ë‚´ë ¤ê°ˆ ê³„ë‹¨ì„ ì„ íƒí–ˆìœ¼ë©´
+		//ë‚´ë ¤ê°€ëŠ”ë° ê±¸ë¦° ì‹œê°„ ìµœì†Ÿê°’ ê°±ì‹ 
 		int result = findMinTime(path0,path1);
 		MinTime = min(MinTime, result);
 		return;
@@ -126,14 +126,14 @@ void DFS(int now) {
 	MAN nowMan = v[now];
 	for (int i = 0; i < 2; i++) {
 		if (i == 1) {
-			path1.push_back(nowMan.dist1);//1¹ø°è´Ü¾Õ¿¡¼­ ´ë±â
-			visited[now] = 1;//µğ¹ö±ë¿ë
+			path1.push_back(nowMan.dist1);//1ë²ˆê³„ë‹¨ì•ì—ì„œ ëŒ€ê¸°
+			visited[now] = 1;//ë””ë²„ê¹…ìš©
 			DFS(now + 1);
 			visited[now] = 0;
 			path1.pop_back();
 		}
 		else if (i == 0) {
-			path0.push_back(nowMan.dist0);//0¹ø°è´Ü ¾Õ¿¡¼­ ´ë±â
+			path0.push_back(nowMan.dist0);//0ë²ˆê³„ë‹¨ ì•ì—ì„œ ëŒ€ê¸°
 			DFS(now + 1);
 			path0.pop_back();
 		}
