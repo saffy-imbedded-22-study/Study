@@ -14,7 +14,7 @@ struct node {
 	int cnt;	// 개수
 };
 
-bool checkbuild(vector<int> v) {
+bool checkbuild(vector<int>& v) {
 
 	int cnt = 1;
 
