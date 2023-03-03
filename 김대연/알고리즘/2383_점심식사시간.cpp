@@ -34,9 +34,9 @@ vector<stair> stairs;
 struct dfsnode
 {
     int stairnum; // 어떤 계단 이용하는지
-    int dist;     // 계단까지 남은 거리
+    int dist;     // 계단까지 남은 거리     -> 0이 아니라면 이동중
     int t;        // 현재 시각
-    int walking;  // 계단 남은 수
+    int walking;  // 계단 남은 수           -> 0이 아니라면 계단 이용중
 
     bool operator<(dfsnode next) const
     {
@@ -86,7 +86,7 @@ int solve()
 
     while (!pq.empty())
     {
-        int timecnt = pq.size();
+        int timecnt = pq.size();    // 현재 pq에 들은 정보들만큼 실행 후 시간 증가
         Time++;
         if (Time > ans)
         { // 지금까지 구한 값보다 크면 종료
