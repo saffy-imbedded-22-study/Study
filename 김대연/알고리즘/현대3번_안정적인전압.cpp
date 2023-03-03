@@ -4,13 +4,20 @@
 using namespace std;
 
 int N;
-int input[200001];
-int arr[200001];
-int DAT_zero[200001];
+int input[200001];		// 입력 정보
+int arr[200001];		// 누적 합
+int DAT_zero[200001];	// 현재까지 0 개수
 unordered_map<int, int> um;
 
 /*
-	0 개수 = 본인위치까지의 0 개수 + 본인위치부터 본인 입력값과 같은 값 개수
+	규칙만 찾으면 간단!
+
+	입력을 없던일로 하는거기 때문에 그 전까지는 영향X, 본인 위치 이후부터 영향.
+
+	0 개수 = 본인위치 전까지의 0 개수 + 본인위치부터 본인 입력값과 같은 값 개수
+				DAT_zero 이용				arr 이용
+
+	
 	ex) 입력값 0 -1 1 0 1
 		누적합 0 -1 0 0 1
 
@@ -24,15 +31,15 @@ unordered_map<int, int> um;
 int main() {
 	cin >> N;
 
-	int sum = 0;
-	int cnt_zero = 0;
+	int sum = 0;		// 합
+	int cnt_zero = 0;	// 0 카운트
 
 	for (int i = 0;i < N;i++) {
 		cin >> input[i];
 		sum += input[i];
 		arr[i] = sum;			// 지금까지의 합 저장
 		DAT_zero[i] = cnt_zero; // 본인 위치 전까지의 0 개수 저장
-		if (arr[i] == 0) cnt_zero++;
+		if (arr[i] == 0) cnt_zero++;	// 입력해주고 카운트+
 		
 		if (um.find(arr[i]) != um.end()) {	// map에 갯수 count
 			um[arr[i]]++;
