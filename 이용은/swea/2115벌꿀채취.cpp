@@ -12,8 +12,8 @@ int maxRe;
 int dy, dx;//최대 일떄 시작좌표
 void reset() {
 	memset(Result, 0, sizeof(Result));
-	maxRe = 0;
-	reMax = 0;
+	maxRe = 0;//처음 결과 저장용
+	reMax = 0;//DFS용
 }
 
 void input() {
@@ -59,9 +59,9 @@ void Sliding(int arr[11], int y) {
 		//처리
 			//sum이 큰경우 result 바꾸기
 		if (sum > C) {
-			findMax(0, left, right, MAP[y],0,0);
-			result = reMax;
-			reMax = 0;
+			findMax(0, left, right, MAP[y],0,0);//DFS로 모든경우 해보기
+			result = reMax;//결과 갱신
+			reMax = 0;//초기화
 		}
 			//최댓값 갱신
 		if (maxRe < result) {
