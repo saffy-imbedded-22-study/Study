@@ -8,9 +8,7 @@ struct cord {
 };
 
 int N,M;
-int MAP[50][50];
 int chicDistOfCity =21e8;
-int chicCnt;
 vector<cord>Home;
 vector<cord>Chic;
 vector<cord>path;
