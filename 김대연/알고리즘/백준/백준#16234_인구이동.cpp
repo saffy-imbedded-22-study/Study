@@ -28,7 +28,7 @@ int dirx[4] = { 0,0,-1,1 };
 void ResetParent() {	// parent 초기화
 	for (int i = 0;i < N;i++) {
 		for (int j = 0;j < N;j++) {
-			parent[N * i + j] = N * i + j;
+			parent[N * i + j] = N * i + j;	// 2차원 배열을 1차원으로 이용하기 위해
 		}
 	}
 }
@@ -65,14 +65,14 @@ int main() {
 		ResetParent();
 		memset(DAT, 0, sizeof(DAT));
 
-		for (int i = 0;i < N;i++) {
+		for (int i = 0;i < N;i++) {		// 순회하면서 조건 만족하는것들 묶어주기
 			for (int j = 0;j < N;j++) {
-				int now = Map[i][j];
+				int now = Map[i][j];	// 현재 위치 값
 
 				for (int dir = 0;dir < 4;dir++) {
 					int dy = i + diry[dir];
 					int dx = j + dirx[dir];
-					if (dx >= N || dx < 0 || dy >= N || dy < 0)continue;
+					if (dx >= N || dx < 0 || dy >= N || dy < 0)continue;	// 경계선 리턴
 					int diff = abs(Map[dy][dx] - now);
 
 					if (diff >= L && diff <= R) {	// 차이가 조건을 만족하면 Union
@@ -82,6 +82,7 @@ int main() {
 				}
 			}
 		}
+		
 		for (int i = 0;i < N;i++) {	//같은거 합하고 개수 세기
 			for (int j = 0;j < N;j++) {
 				DAT[Find(i * N + j)].sum += Map[i][j];
