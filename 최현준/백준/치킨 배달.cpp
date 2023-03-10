@@ -33,9 +33,9 @@ void dfs(int start, int cnt)
 
 	for (int i = start; i < chicken_len; i++)
 	{
-		if (visited[i]) continue;
+		//if (visited[i]) continue;
 
-		visited[i] = 1;
+		//visited[i] = 1;
 
 		int temp[101];
 
@@ -50,10 +50,10 @@ void dfs(int start, int cnt)
 			temp[j] = dist[j];
 			dist[j] = min(result, dist[j]);
 		}
-		dfs(i, cnt + 1);
+		dfs(i+1, cnt + 1);
 		for (int j = 0; j < house_len; j++)
 			dist[j] = temp[j];
-		visited[i] = 0;
+		//visited[i] = 0;
 	}
 
 }
@@ -77,7 +77,7 @@ int main()
 	chicken_len = chicken.size();
 
 
-	for(int i = 0; i<101; i++)
+	for (int i = 0; i < 101; i++)
 		dist[i] = 21e8;
 
 	dfs(0, 0);
