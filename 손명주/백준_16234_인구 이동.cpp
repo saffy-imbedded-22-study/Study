@@ -1,10 +1,11 @@
+ï»¿//í•œê¸€
 #include <iostream>
 #include <cstring>
 #include <queue>
 #include <vector>
 using namespace std;
 
-int N, L, R; //Å©±â, Â÷ÀÌ ÇÏÇÑ, »óÇÑ
+int N, L, R; //í¬ê¸°, ì°¨ì´ í•˜í•œ, ìƒí•œ
 int pop[50][50];
 int visited[50][50];
 int dir[4][2] = { -1,0,1,0,0,-1,0,1 };
@@ -16,8 +17,8 @@ struct node {
 
 void run(int y, int x) {
 	if (visited[y][x] == 1) return;
-	queue<node> q; //Å½»ö¿ë
-	vector<node> v; //y, x¶û ¿¬ÇÕ
+	queue<node> q; //íƒìƒ‰ìš©
+	vector<node> v; //y, xë‘ ì—°í•©
 	q.push({ y,x });
 	v.push_back({ y,x });
 	visited[y][x] = 1;
@@ -32,7 +33,7 @@ void run(int y, int x) {
 			if (ny < 0 || nx < 0 || ny >= N || nx >= N) continue;
 			if (visited[ny][nx] == 1) continue;
 			int diff = abs(pop[now.y][now.x] - pop[ny][nx]);
-			if (diff<L || diff>R) continue; //LÀÌ 1ÀÌ»óÀÌ¶ó °°À¸¸é ¿¬ÇÕ¾ÈµÊ
+			if (diff<L || diff>R) continue; //Lì´ 1ì´ìƒì´ë¼ ê°™ìœ¼ë©´ ì—°í•©ì•ˆë¨
 			visited[ny][nx] = 1;
 			q.push({ ny,nx });
 			v.push_back({ ny,nx });
@@ -40,7 +41,7 @@ void run(int y, int x) {
 			sum += pop[ny][nx];
 		}
 	}
-	//¿¬ÇÕÀÖÀ» ¶§ flag(ÇÏ·ç±âÁØ) Áõ°¡, ÀÎ±¸¼ö º¯È­
+	//ì—°í•©ìˆì„ ë•Œ flag(í•˜ë£¨ê¸°ì¤€) ì¦ê°€, ì¸êµ¬ìˆ˜ ë³€í™”
 	if (cnt != 1) {
 		flag++;
 		for (int i = 0; i < v.size(); i++) {
@@ -49,7 +50,7 @@ void run(int y, int x) {
 	}
 }
 void move() {
-	//ÇÏ·ç¸¶´Ù visited ÃÊ±âÈ­
+	//í•˜ë£¨ë§ˆë‹¤ visited ì´ˆê¸°í™”
 	memset(visited, 0, sizeof(visited));
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
