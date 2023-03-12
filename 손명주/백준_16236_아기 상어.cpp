@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cstring>
 #include <queue>
 using namespace std;
@@ -6,14 +6,14 @@ using namespace std;
 int N;
 int map[20][20];
 int visit[20][20];
-int dir[4][2] = { -1,0,0,-1,0,1,1,0 }; //¼ø¼­ »ó ÁÂ ¿ì ÇÏ ¸¸À¸·Î ¾ÈµÅ¼­ pq·Î ¹Ù±ÉÀ½
-int t; //½Ã°£
-int Y, X, ATE, SIZE = 2; //»ó¾î »óÅÂ
+int dir[4][2] = { -1,0,0,-1,0,1,1,0 }; //ìˆœì„œ ìƒ ì¢Œ ìš° í•˜ ë§Œìœ¼ë¡œ ì•ˆë¼ì„œ pqë¡œ ë°”ê¶œìŒ
+int t; //ì‹œê°„
+int Y, X, ATE, SIZE = 2; //ìƒì–´ ìƒíƒœ
 
 struct node {
 	int y;
 	int x;
-	int d; //»ó¾î·ÎºÎÅÍ °Å¸®
+	int d; //ìƒì–´ë¡œë¶€í„° ê±°ë¦¬
 };
 struct cmp {
 	bool operator()(node left, node right) {
@@ -35,7 +35,7 @@ void move() {
 		node now = q.top();
 		q.pop();
 
-		//¸ÔÀ» ¼ö ÀÖ´Â °æ¿ì
+		//ë¨¹ì„ ìˆ˜ ìžˆëŠ” ê²½ìš°
 		if (map[now.y][now.x] > 0 && map[now.y][now.x] < SIZE) {
 			map[now.y][now.x] = 0;
 			ATE++;
@@ -58,14 +58,14 @@ void move() {
 void run() {
 	while (true) {
 		int now = t;
-		//ÇÑ¹ø ¿òÁ÷ÀÏ ¶§¸¶´Ù visit ¸®¼Â
+		//í•œë²ˆ ì›€ì§ì¼ ë•Œë§ˆë‹¤ visit ë¦¬ì…‹
 		memset(visit, 0, sizeof(visit));
 		move();
 		if (ATE == SIZE) {
 			SIZE++;
 			ATE = 0;
 		}
-		//½Ã°£ÀÌ ¾ÈÁö³² == ¸ÔÀ»°Ô ¾øÀ½
+		//ì‹œê°„ì´ ì•ˆì§€ë‚¨ == ë¨¹ì„ê²Œ ì—†ìŒ
 		if (t == now) break;
 	}
 }
