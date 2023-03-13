@@ -12,6 +12,16 @@
 
 <br></br>
 
+## 이 주의 문제 (~ 3/20)
+| 제목 | 난이도 | 링크 |
+| :---: | :---: | :---: | 
+| 감시 | 하 | [문제 링크](https://www.acmicpc.net/problem/15683) |
+| 연구소3 | 하 | [문제 링크](https://www.acmicpc.net/problem/17142) |
+| 스타트 택시 | 중 | [문제 링크](https://www.acmicpc.net/problem/19238) |
+| 2048(easy) | 상(선택) | [문제 링크](https://www.acmicpc.net/problem/12100) |
+
+<br></br>
+
 ## 이 주의 로테이션 (~ 3/13)
 
 - 김대연 -> 최현준, 손명주
